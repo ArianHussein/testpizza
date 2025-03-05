@@ -1,6 +1,52 @@
 {% extends 'base.html.twig' %}
-{% block title %} Over ons {% endblock %}
+
+{% block title %}Categorieën{% endblock %}
+
 {% block body %}
-    <h1>Over Ons</h1>
-    <p>Meer informatie over ons project.</p>
+    <!-- Navigatiebalk -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">A&K Pizzas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categorieën</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Over ons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="container mt-5">
+        <h1 class="text-center">Onze Categorieën</h1>
+        <p class="text-center">Bekijk onze heerlijke categorieën en kies jouw favoriet!</p>
+
+        <!-- Categorieën kaarten -->
+        <div class="row mt-4">
+            {% for category in categories %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{{ asset('images/' ~ category.img) }}" class="card-img-top" alt="{{ category.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ category.name }}</h5>
+                            <a href="{{ path('category_detail', {'id': category.id}) }}" class="btn btn-primary w-100">Bekijk</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
